@@ -1,5 +1,15 @@
 language: java
 jdk:
- - oraclejdk8
+- oraclejdk8
 sudo: false
 script: mvn clean verify
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  file_glob: true
+  api_key:
+    secure: LGNJuslO2yOrwkELf4iBhPcMP3aCmrsBwq/s9PMYv0dau3Jd51yt3CnOYuDOFK1Tz6N5oRwMNtSZLrSL6Zo2mc2HVHGuYaxlHojsJOxumqFu6fdIhgNhmL7mo2oOq9kvJwSD+R7O83rqWBNTx0UTsM2hR0/N9Cn+VLHJkNtEdwvQQozmDgcy7VxJ+DebKqMWqDoMYaVe5eqs1NwyprFGboGGBBj2YViHz56emvZgZc4A1npICIl5kOrsE9E+N9zSJ6X4LNgs+F5WhFXhDDefatwrQhYMG/J8deXS1nh1zHM8tdHiwJQEFQvSdsofIy7sXWxAGu9rTjbHoZvvZTThxWUfm7tVWSM6MedYIxyrBZ7QDLkjQMtgFMAHOpaZH+Zui17Vqc0MzMRSV8hYx5+gjVfi5R8Z6t09F3gJojCp3AKQ4IOt5MKKt8TbTSdns56A4HXfpMMxrrURGESW7H93kSP8/W9jt0CsJJUJnHRlnB20B/FPoa3kDN9KmYwXtQrbU/C44BvMixuAOf3wHdhiMfsoU5V9QFD5QYaTzBWmLTbfiIHFPxv3+l5G5b/2hx14G9y70KVy4/88Os2T4Ry+mx/iKira9uhxikCeRjI1OJmiy0k9ZdezsXg8txFY+0uifmvNJ8FoRuC7LNn0v3cuVpMTQ7HAqDxA8Xqinx+8au4=
+  file: "target/xtab-converter-*-jar-with-dependencies.jar"
+  on:
+    tags: true
