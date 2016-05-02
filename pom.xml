@@ -12,7 +12,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.tngtech.xtab.converter.Runner</mainClass>
+                            <mainClass>com.tngtech.xtab.converter.XtabConverter</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -48,6 +48,11 @@
             <version>2.4.9</version>
         </dependency>
         <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>19.0</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
             <version>3.2-FINAL</version>
@@ -73,6 +78,11 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.4.1</version>
         </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
