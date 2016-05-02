@@ -9,6 +9,7 @@ import org.dbunit.dataset.xml.XmlDataSetWriter;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -21,14 +22,26 @@ public class XtabConverter {
         convertXlsToXtab(args[0]);
     }
 
-    static void convertXlsToXtab(String pathname) throws IOException, DataSetException {
+    static void convertXlsToXtab(String pathname) throws Exception {
         File sourceFilePath = new File(pathname);
-        IDataSet dataSet = new XlsDataSet(sourceFilePath);
+        IDataSet dataSet = readXlsAsDataSet(sourceFilePath);
+        Path targetPath = deriveTargetPathFromSource(sourceFilePath);
+        writeDataSetAsXtab(dataSet, targetPath);
+    }
 
-        Path sourcePath = sourceFilePath.toPath();
-        Path targetPath = sourcePath.resolveSibling(sourcePath.getFileName().toString().replaceFirst("\\.xls", ".xtab"));
-        BufferedWriter writer = Files.newBufferedWriter(targetPath, Charsets.UTF_8);
-        writer.write("<?xml version='1.0' encoding='" + Charsets.UTF_8.name() + "'?>\n");
+    private static XlsDataSet readXlsAsDataSet(File sourceFilePath) throws Exception {
+        return new XlsDataSet(sourceFilePath);
+    }
+
+    private static Path deriveTargetPathFromSource(File source) {
+        Path sourcePath = source.toPath();
+        return sourcePath.resolveSibling(sourcePath.getFileName().toString().replaceFirst("\\.xls", ".xtab"));
+    }
+
+    private static void writeDataSetAsXtab(IDataSet dataSet, Path targetPath) throws Exception {
+        Charset encoding = Charsets.UTF_8;
+        BufferedWriter writer = Files.newBufferedWriter(targetPath, encoding);
+        writer.write("<?xml version='1.0' encoding='" + encoding.name() + "'?>\n");
         XmlDataSetWriter xmlWriter = new XmlDataSetWriter(writer);
         xmlWriter.write(dataSet);
     }
