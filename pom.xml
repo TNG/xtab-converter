@@ -12,7 +12,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>xtabconverter.Runner</mainClass>
+                            <mainClass>com.tngtech.xtab.converter.Runner</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
