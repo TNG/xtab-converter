@@ -3,3 +3,7 @@
 target
 nb-configuration.xml
 nbactions.xml
+#eclipse
+.project
+.classpath
+.settings
