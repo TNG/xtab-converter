@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <dataset>
   <table name="TableX">
     <column>A</column>
@@ -63,6 +63,22 @@
       <value>d</value>
       <value>e</value>
     </row>
+    <row>
+      <value>ä</value>
+      <value>ö</value>
+      <value>ü</value>
+      <value>ß</value>
+      <value>e6</value>
+      <value>f6</value>
+    </row>
+    <row>
+      <value>Ä</value>
+      <value>Ö</value>
+      <value>Ü</value>
+      <value>d7</value>
+      <value>e7</value>
+      <value>f7</value>
+    </row>
   </table>
-  <table name="TableZ"/>
+  <table name="TableZ" />
 </dataset>
