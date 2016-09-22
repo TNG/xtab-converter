@@ -11,12 +11,24 @@ import static org.assertj.core.api.Assertions.contentOf;
 
 public class XtabConverterTest {
 
-    private static final File XLS = fileOf("/origin.xls");
-    private static final File XTAB = fileOf("/origin.xls").toPath().resolveSibling("origin.xtab").toFile();
-    private static final File XTAB_FIXTURE = fileOf("/fixture.xtab");
-
     @Test
     public void testXlsFileConversion() throws Exception {
+        File XLS = fileOf("/origin.xls");
+        File XTAB = fileOf("/origin.xls").toPath().resolveSibling("origin.xtab").toFile();
+        File XTAB_FIXTURE = fileOf("/fixture.xtab");
+        assertThat(XTAB).doesNotExist();
+
+        XtabConverter.convertXlsToXtab(XLS.getAbsolutePath());
+
+        assertThat(contentOf(XTAB)).isXmlEqualToContentOf(XTAB_FIXTURE);
+        XTAB.deleteOnExit();
+    }
+
+    @Test
+    public void testXlsDateConversion() throws Exception {
+        File XLS = fileOf("/dates_and_timestamps_origin.xls");
+        File XTAB = fileOf("/dates_and_timestamps_origin.xls").toPath().resolveSibling("dates_and_timestamps_origin.xtab").toFile();
+        File XTAB_FIXTURE = fileOf("/dates_and_timestamps_fixture.xtab");
         assertThat(XTAB).doesNotExist();
 
         XtabConverter.convertXlsToXtab(XLS.getAbsolutePath());
