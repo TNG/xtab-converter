@@ -2,7 +2,7 @@ package com.tngtech.xtab.converter;
 
 import com.google.common.base.Charsets;
 import org.dbunit.dataset.IDataSet;
-import org.dbunit.dataset.excel.XlsDataSet;
+import org.dbunit.dataset.excel.XlsDataSetWithDatePatched;
 import org.dbunit.dataset.xml.XmlDataSetWriter;
 
 import java.io.BufferedWriter;
@@ -27,8 +27,8 @@ public class XtabConverter {
         writeDataSetAsXtab(dataSet, targetPath);
     }
 
-    private static XlsDataSet readXlsAsDataSet(File sourceFilePath) throws Exception {
-        return new XlsDataSet(sourceFilePath);
+    private static XlsDataSetWithDatePatched readXlsAsDataSet(File sourceFilePath) throws Exception {
+        return new XlsDataSetWithDatePatched(sourceFilePath);
     }
 
     private static Path deriveTargetPathFromSource(File source) {
