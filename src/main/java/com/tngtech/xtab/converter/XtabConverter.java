@@ -1,14 +1,12 @@
 package com.tngtech.xtab.converter;
 
 import com.google.common.base.Charsets;
-import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.IDataSet;
-import org.dbunit.dataset.excel.XlsDataSet;
+import org.dbunit.dataset.excel.XlsDataSetWithDatePatched;
 import org.dbunit.dataset.xml.XmlDataSetWriter;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -29,8 +27,8 @@ public class XtabConverter {
         writeDataSetAsXtab(dataSet, targetPath);
     }
 
-    private static XlsDataSet readXlsAsDataSet(File sourceFilePath) throws Exception {
-        return new XlsDataSet(sourceFilePath);
+    private static XlsDataSetWithDatePatched readXlsAsDataSet(File sourceFilePath) throws Exception {
+        return new XlsDataSetWithDatePatched(sourceFilePath);
     }
 
     private static Path deriveTargetPathFromSource(File source) {
@@ -41,7 +39,7 @@ public class XtabConverter {
     private static void writeDataSetAsXtab(IDataSet dataSet, Path targetPath) throws Exception {
         Charset encoding = Charsets.UTF_8;
         BufferedWriter writer = Files.newBufferedWriter(targetPath, encoding);
-        writer.write("<?xml version='1.0' encoding='" + encoding.name() + "'?>\n");
+        writer.write("<?xml version='1.0' encoding='" + encoding.name().toLowerCase() + "'?>\n");
         XmlDataSetWriter xmlWriter = new XmlDataSetWriter(writer);
         xmlWriter.write(dataSet);
     }

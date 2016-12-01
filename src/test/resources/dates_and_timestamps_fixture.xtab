@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataset>
+  <table name="TIME_TEST">
+    <column>TEST_DATES</column>
+    <column>TEST_TIMESTAMP</column>
+    <row>
+      <value><![CDATA[2015-12-30 13:22:59]]></value>
+      <value>2014-11-30</value>
+    </row>
+    <row>
+      <value><![CDATA[2015-12-28 13:22:59]]></value>
+      <value><![CDATA[2014-11-28 00:00:00]]></value>
+    </row>
+    <row>
+      <value><![CDATA[2015-12-27 13:22:59.123456789]]></value>
+      <value><![CDATA[2014-11-27 13:22:59]]></value>
+    </row>
+    <row>
+      <value><![CDATA[2015-12-25 13:22:59.123000000]]></value>
+      <value><![CDATA[2014-11-25 13:22:59.123456789]]></value>
+    </row>
+    <row>
+      <value><![CDATA[2015-12-24 13:22:59.123000000]]></value>
+      <value><![CDATA[2014-11-24 13:22:59.123000000]]></value>
+    </row>
+  </table>
+</dataset>
