@@ -33,13 +33,14 @@ public class XtabConverter {
 
     private static Path deriveTargetPathFromSource(File source) {
         Path sourcePath = source.toPath();
-        return sourcePath.resolveSibling(sourcePath.getFileName().toString().replaceFirst("\\.xls", ".xtab"));
+        String targetFileName = sourcePath.getFileName().toString().replaceFirst("\\.xls", ".xtab");
+        return sourcePath.resolveSibling(targetFileName);
     }
 
     private static void writeDataSetAsXtab(IDataSet dataSet, Path targetPath) throws Exception {
         Charset encoding = Charsets.UTF_8;
         BufferedWriter writer = Files.newBufferedWriter(targetPath, encoding);
-        writer.write("<?xml version='1.0' encoding='" + encoding.name().toLowerCase() + "'?>\n");
+        writer.write("<?xml version=\"1.0\" encoding=\"" + encoding.name().toLowerCase() + "\"?>\n");
         XmlDataSetWriter xmlWriter = new XmlDataSetWriter(writer);
         xmlWriter.write(dataSet);
     }
