@@ -7,6 +7,6 @@ Convert existing dbunit-xls files to xml dataset
 
 ### Usage
 ```
-xtab-converter.jar [path-to-xls-file]
+java -jar xtab-converter.jar [path-to-xls-file]
 ```
 
