@@ -1,6 +1,5 @@
 package com.tngtech.xtab.converter;
 
-import com.google.common.base.Charsets;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.excel.XlsDataSetWithDatePatched;
 import org.dbunit.dataset.xml.XmlDataSetWriter;
@@ -11,12 +10,12 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
 public class XtabConverter {
 
     public static void main(String[] args) throws Exception {
-        checkArgument(args.length == 1, "usage: java ... <path to source file>");
+        if (args.length != 1) {
+            throw new IllegalArgumentException("usage: java ... <path to source file>");
+        }
         convertXlsToXtab(args[0]);
     }
 
@@ -38,7 +37,7 @@ public class XtabConverter {
     }
 
     private static void writeDataSetAsXtab(IDataSet dataSet, Path targetPath) throws Exception {
-        Charset encoding = Charsets.UTF_8;
+        Charset encoding = Charset.forName("UTF-8");
         BufferedWriter writer = Files.newBufferedWriter(targetPath, encoding);
         writer.write("<?xml version=\"1.0\" encoding=\"" + encoding.name().toLowerCase() + "\"?>\n");
         XmlDataSetWriter xmlWriter = new XmlDataSetWriter(writer);

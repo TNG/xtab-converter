@@ -1,10 +1,8 @@
 package com.tngtech.xtab.converter;
 
-import com.google.common.base.Throwables;
 import org.junit.Test;
 
 import java.io.File;
-import java.net.URISyntaxException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.contentOf;
@@ -37,11 +35,7 @@ public class XtabConverterTest {
         XTAB.deleteOnExit();
     }
 
-    private static File fileOf(String path) {
-        try {
-            return new File(XtabConverterTest.class.getResource(path).toURI());
-        } catch (URISyntaxException e) {
-            throw Throwables.propagate(e);
-        }
+    private static File fileOf(String path) throws Exception {
+        return new File(XtabConverterTest.class.getResource(path).toURI());
     }
 }
